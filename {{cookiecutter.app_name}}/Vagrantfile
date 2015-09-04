@@ -13,6 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     dev.vm.box = "ubuntu/trusty64"
     dev.vm.network "private_network", ip: "{{ cookiecutter.vagrant_ipv4 }}"
     dev.vm.provision :ansible do |ansible|
+      ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
       ansible.playbook = "playbooks/develop.yml"
       ansible.inventory_path = "playbooks/hosts"
       # ansible.ask_vault_pass = true
